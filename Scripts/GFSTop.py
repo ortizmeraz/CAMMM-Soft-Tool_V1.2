@@ -317,114 +317,12 @@ def GtfsRouteCleaning(DataSequence,DataTrips,DataRoutes,DataStops,RouteType):
 
 
 
-
-    # #######################################################################
-    # for RouteKey in DataRoutes.keys():
-    #     BusStopsInRoute={}
-    #     if DataRoutes[RouteKey]['route_type'] in BusCodes:
-    #         # print('route_id',DataRoutes[RouteKey]['route_id'])
-    #         VarRouteId=DataRoutes[RouteKey]['route_id']
-    #         # print("-----------------------------------------------------------------------------------------------------------------------------------")
-    #         # print("VarRouteId",VarRouteId)
-    #         if VarRouteId in DataTrips:
-    #             ListofBusRoutes.append(VarRouteId)
-    # print("#########################################################################################################\n"*5)
-    # print("ListofBusRoutes",type(ListofBusRoutes),len(ListofBusRoutes))
-    # print(ListofBusRoutes[:15])
-
-
-    # ListofBusRoutes=[]
-    # ListofTrainRoutes=[]
-    # ListofMetroRoutes=[]
-    # ListofTramRoutes=[]
-    # ListofOtherRoutes=[]
-
-
     ListofBusRoutes=RoutSeparator(TransportCodes=BusType)
     ListofTrainRoutes=RoutSeparator(TransportCodes=TrainType)
     ListofMetroRoutes=RoutSeparator(TransportCodes=Metrotype)
     ListofTramRoutes=RoutSeparator(TransportCodes=TramType)
     ListofOtherRoutes=RoutSeparator(TransportCodes=OtherType)
-    # print("#########################################################################################################\n"*5)
-    # print("List",type(List),len(List))
-    # print(List[:15])
-
-
-    # b=input()
-
-
-    # #######################################################################
-    # for RouteKey in DataRoutes.keys():
-    #     BusStopsInRoute={}
-    #     if DataRoutes[RouteKey]['route_type'] in TrainType:
-    #         # print('route_id',DataRoutes[RouteKey]['route_id'])
-    #         VarRouteId=DataRoutes[RouteKey]['route_id']
-    #         # print("-----------------------------------------------------------------------------------------------------------------------------------")
-    #         # print("VarRouteId",VarRouteId)
-    #         if VarRouteId in DataTrips:
-    #             ListofTrainRoutes.append(VarRouteId)
-    # print("#########################################################################################################\n"*5)
-    # print("ListofBusRoutes",type(ListofTrainRoutes),len(ListofTrainRoutes))
-    # print(ListofTrainRoutes[:15])
-    # # b=input()
-
-    # #######################################################################
-    # for RouteKey in DataRoutes.keys():
-    #     BusStopsInRoute={}
-    #     if DataRoutes[RouteKey]['route_type'] in Metrotype:
-    #         # print('route_id',DataRoutes[RouteKey]['route_id'])
-    #         VarRouteId=DataRoutes[RouteKey]['route_id']
-    #         # print("-----------------------------------------------------------------------------------------------------------------------------------")
-    #         # print("VarRouteId",VarRouteId)
-    #         if VarRouteId in DataTrips:
-    #             ListofMetroRoutes.append(VarRouteId)
-    # print("#########################################################################################################\n"*5)
-    # print("ListofMetroRoutes",type(ListofMetroRoutes),len(ListofMetroRoutes))
-    # print(ListofMetroRoutes[:15])
-    # # b=input()
-
-    # #######################################################################
-    # for RouteKey in DataRoutes.keys():
-    #     BusStopsInRoute={}
-    #     if DataRoutes[RouteKey]['route_type'] in TramType:
-    #         # print('route_id',DataRoutes[RouteKey]['route_id'])
-    #         VarRouteId=DataRoutes[RouteKey]['route_id']
-    #         # print("-----------------------------------------------------------------------------------------------------------------------------------")
-    #         # print("VarRouteId",VarRouteId)
-    #         if VarRouteId in DataTrips:
-    #             ListofTramRoutes.append(VarRouteId)
-    # print("#########################################################################################################\n"*5)
-    # print("ListofTramRoutes",type(ListofTramRoutes),len(ListofTramRoutes))
-    # print(ListofTramRoutes[:15])
-    # # b=input()
-
-    # #######################################################################
-    # for RouteKey in DataRoutes.keys():
-    #     BusStopsInRoute={}
-    #     if DataRoutes[RouteKey]['route_type'] in OtherType:
-    #         # print('route_id',DataRoutes[RouteKey]['route_id'])
-    #         VarRouteId=DataRoutes[RouteKey]['route_id']
-    #         # print("-----------------------------------------------------------------------------------------------------------------------------------")
-    #         # print("VarRouteId",VarRouteId)
-    #         if VarRouteId in DataTrips:
-    #             ListofOtherRoutes.append(VarRouteId)
-    # print("#########################################################################################################\n"*5)
-    # print("ListofOtherRoutes",type(ListofOtherRoutes),len(ListofOtherRoutes))
-    # print(ListofOtherRoutes[:15])
-    # print("#########################################################################################################\n"*10)
-    # # b=input()
-
-
-    Data_Buses={}
-    Data_Metro={}
-    Data_Train={}
-    Data_Tram={}
-    Data_Other={}
-
-
-
-
-    #################################################################################
+    ##################################################
 
     def DataGenerator(ListOfElements):
         Data={}
@@ -452,146 +350,31 @@ def GtfsRouteCleaning(DataSequence,DataTrips,DataRoutes,DataStops,RouteType):
     Data_Tram=DataGenerator(ListOfElements=ListofTramRoutes)
     Data_Other=DataGenerator(ListOfElements=ListofOtherRoutes)
 
-    # #################################################################################
-    # for RouteKey in ListofBusRoutes:
-    #     VarRouteId=DataRoutes[RouteKey]['route_id']
-    #     Data_Buses[RouteKey]={'0':[],'1':[]}
-    #     ListOfStopsCero=[]
-    #     ListOfStops_One=[]
-    #     for Tripkey in DataTrips[VarRouteId]:
-    #         ListOfStops=[]
-    #         VarDirectionId=DataTrips[VarRouteId][Tripkey]['direction_id']
-    #         for SeqKey in DataSequence[Tripkey].keys():
-    #             ListOfStops.append(DataSequence[Tripkey][SeqKey]['stop_id'])
-    #         if VarDirectionId=='0':
-    #             ListOfStopsCero.append(ListOfStops)
-    #         if VarDirectionId=='1':
-    #             ListOfStops_One.append(ListOfStops)
-    #     Data_Buses[RouteKey]['0']=DataCleanerTrips(ListToClean=ListOfStopsCero)
-    #     Data_Buses[RouteKey]['1']=DataCleanerTrips(ListToClean=ListOfStops_One)
-    # #################################################################################
-    # for RouteKey in ListofTrainRoutes:
-    #     VarRouteId=DataRoutes[RouteKey]['route_id']
-    #     Data_Train[RouteKey]={'0':[],'1':[]}
-    #     ListOfStopsCero=[]
-    #     ListOfStops_One=[]
-    #     for Tripkey in DataTrips[VarRouteId]:
-    #         ListOfStops=[]
-    #         VarDirectionId=DataTrips[VarRouteId][Tripkey]['direction_id']
-    #         for SeqKey in DataSequence[Tripkey].keys():
-    #             ListOfStops.append(DataSequence[Tripkey][SeqKey]['stop_id'])
-    #         if VarDirectionId=='0':
-    #             ListOfStopsCero.append(ListOfStops)
-    #         if VarDirectionId=='1':
-    #             ListOfStops_One.append(ListOfStops)
-    #     Data_Train[RouteKey]['0']=DataCleanerTrips(ListToClean=ListOfStopsCero)
-    #     Data_Train[RouteKey]['1']=DataCleanerTrips(ListToClean=ListOfStops_One)
-    # #################################################################################
-    # for RouteKey in ListofMetroRoutes:
-    #     VarRouteId=DataRoutes[RouteKey]['route_id']
-    #     Data_Metro[RouteKey]={'0':[],'1':[]}
-    #     ListOfStopsCero=[]
-    #     ListOfStops_One=[]
-    #     for Tripkey in DataTrips[VarRouteId]:
-    #         ListOfStops=[]
-    #         VarDirectionId=DataTrips[VarRouteId][Tripkey]['direction_id']
-    #         for SeqKey in DataSequence[Tripkey].keys():
-    #             ListOfStops.append(DataSequence[Tripkey][SeqKey]['stop_id'])
-    #         if VarDirectionId=='0':
-    #             ListOfStopsCero.append(ListOfStops)
-    #         if VarDirectionId=='1':
-    #             ListOfStops_One.append(ListOfStops)
-    #     Data_Metro[RouteKey]['0']=DataCleanerTrips(ListToClean=ListOfStopsCero)
-    #     Data_Metro[RouteKey]['1']=DataCleanerTrips(ListToClean=ListOfStops_One)
-    # #################################################################################
-    # for RouteKey in ListofTramRoutes:
-    #     VarRouteId=DataRoutes[RouteKey]['route_id']
-    #     Data_Tram[RouteKey]={'0':[],'1':[]}
-    #     ListOfStopsCero=[]
-    #     ListOfStops_One=[]
-    #     for Tripkey in DataTrips[VarRouteId]:
-    #         ListOfStops=[]
-    #         VarDirectionId=DataTrips[VarRouteId][Tripkey]['direction_id']
-    #         for SeqKey in DataSequence[Tripkey].keys():
-    #             ListOfStops.append(DataSequence[Tripkey][SeqKey]['stop_id'])
-    #         if VarDirectionId=='0':
-    #             ListOfStopsCero.append(ListOfStops)
-    #         if VarDirectionId=='1':
-    #             ListOfStops_One.append(ListOfStops)
-    #     Data_Tram[RouteKey]['0']=DataCleanerTrips(ListToClean=ListOfStopsCero)
-    #     Data_Tram[RouteKey]['1']=DataCleanerTrips(ListToClean=ListOfStops_One)
-    # #################################################################################
-    # for RouteKey in ListofOtherRoutes:
-    #     VarRouteId=DataRoutes[RouteKey]['route_id']
-    #     Data_Other[RouteKey]={'0':[],'1':[]}
-    #     ListOfStopsCero=[]
-    #     ListOfStops_One=[]
-    #     for Tripkey in DataTrips[VarRouteId]:
-    #         ListOfStops=[]
-    #         VarDirectionId=DataTrips[VarRouteId][Tripkey]['direction_id']
-    #         for SeqKey in DataSequence[Tripkey].keys():
-    #             ListOfStops.append(DataSequence[Tripkey][SeqKey]['stop_id'])
-    #         if VarDirectionId=='0':
-    #             ListOfStopsCero.append(ListOfStops)
-    #         if VarDirectionId=='1':
-    #             ListOfStops_One.append(ListOfStops)
-    #     Data_Other[RouteKey]['0']=DataCleanerTrips(ListToClean=ListOfStopsCero)
-    #     Data_Other[RouteKey]['1']=DataCleanerTrips(ListToClean=ListOfStops_One)
-    # #################################################################################
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    print("Data_Buses",type(Data_Buses),len(Data_Buses.keys()))
-    print("Data_Train",type(Data_Train),len(Data_Train.keys()))
-    print("Data_Metro",type(Data_Metro),len(Data_Metro.keys()))
-    print("###################################################################################")
-    print("################################### Data_Buses   ##################################")
-    ListOfDataKeys=list(Data_Buses.keys())
-    for key in ListOfDataKeys[:15]:
-        print(key,Data_Buses[key])
+  
+    # print("Data_Buses",type(Data_Buses),len(Data_Buses.keys()))
+    # print("Data_Train",type(Data_Train),len(Data_Train.keys()))
+    # print("Data_Metro",type(Data_Metro),len(Data_Metro.keys()))
     # print("###################################################################################")
-    # print("################################### Data_Test   ##################################")
-    # ListOfDataKeys=list(Data_Test.keys())
+    # print("################################### Data_Buses   ##################################")
+    # ListOfDataKeys=list(Data_Buses.keys())
     # for key in ListOfDataKeys[:15]:
-    #     print(key,Data_Test[key])
-
-    # if Data_Buses == Data_Test:
-    #     VarText=True
-    # else:
-    #     VarText=False
-    # print("are these equal: ", str(VarText))
-     
-    print("###################################################################################")
-    print("################################### Data_Train   ##################################")
-    ListOfDataKeys=list(Data_Train.keys())
-    for key in ListOfDataKeys[:15]:
-        print(key,Data_Train[key])
-    print("###################################################################################")
-    print("################################### Data_Metro   ##################################")
-    ListOfDataKeys=list(Data_Metro.keys())
-    for key in ListOfDataKeys[:15]:
-        print(key,Data_Metro[key])
-    print("###################################################################################")
-    print("################################### Data_Tram   ##################################")
-    ListOfDataKeys=list(Data_Tram.keys())
-    for key in ListOfDataKeys[:15]:
-        print(key,Data_Tram[key])
-
+    #     print(key,Data_Buses[key])
+    #  print("###################################################################################")
+    # print("################################### Data_Train   ##################################")
+    # ListOfDataKeys=list(Data_Train.keys())
+    # for key in ListOfDataKeys[:15]:
+    #     print(key,Data_Train[key])
+    # print("###################################################################################")
+    # print("################################### Data_Metro   ##################################")
+    # ListOfDataKeys=list(Data_Metro.keys())
+    # for key in ListOfDataKeys[:15]:
+    #     print(key,Data_Metro[key])
+    # print("###################################################################################")
+    # print("################################### Data_Tram   ##################################")
+    # ListOfDataKeys=list(Data_Tram.keys())
+    # for key in ListOfDataKeys[:15]:
+    #     print(key,Data_Tram[key])
     # b=input()
-
-
-
 
     ##############################################################################################################
     ##############################################################################################################
@@ -605,7 +388,6 @@ def GtfsRouteCleaning(DataSequence,DataTrips,DataRoutes,DataStops,RouteType):
 
 
 def GetOrder(Data):
-
     LegData={}
     for key in Data.keys():
         # print( key)
